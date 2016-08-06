@@ -32,9 +32,10 @@ function getInputObjAndRplaceByRightContent(str,dirname){
 
 function getTTTObjWordAndRplaceByContent(Tstr,obj){
 	var reg2=/\$\{(\w+)\}/g;
+	var obj=obj||{};
 	return Tstr.replace(reg2,function(m,p1){
         	//console.log(p1)
-        	var obj=obj||{};
+        	
             return obj[p1]||'';
         });
 }
