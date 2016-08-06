@@ -20,7 +20,7 @@ function readFile(inputPath){
 
 
 function getInputObjAndRplaceByRightContent(str,dirname){
-	var reg=/<%include (\w+)(\{[^0]+\})* %>/g;
+	var reg=/<%include (\w+)(\{[^\%\>\<]+\})* %>/g;
 	
 	return str.replace(reg,function(m,p1,p2){
 		 var obj=eval('('+p2+')');//获取对象
@@ -34,7 +34,8 @@ function getTTTObjWordAndRplaceByContent(Tstr,obj){
 	var reg2=/\$\{(\w+)\}/g;
 	return Tstr.replace(reg2,function(m,p1){
         	//console.log(p1)
-            return obj[p1];
+        	var obj=obj||{};
+            return obj[p1]||'';
         });
 }
 
